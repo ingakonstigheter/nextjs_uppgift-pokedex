@@ -4,7 +4,7 @@ import Image from "next/image";
 function PokemonCard({ pokemonId }: { pokemonId: string }) {
   //const pokemon: Pokemon = await fetachAllPokemon();
   return (
-    <article className="border-4 rounded-xl border-sky-700 max-w-[200px] max-h-[400] p-2 px-8 grid place-items-center">
+    <article className="border-4 rounded-xl border-sky-700 max-w-[200px] max-h-[400] p-2 px-8 inline-grid place-items-center">
       <Image
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemonId}.png`}
         alt={""}
