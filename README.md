@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📖 Pokédex Projektinstruktion
 
-## Getting Started
+Välkommen till ditt **Next.js-projekt**! 🎉
+I den här uppgiften får du möjlighet att tillämpa dina kunskaper om **React**, **Next.js**, **API-anrop** och **komponentbaserad design** genom att bygga en dynamisk **Pokédex** 🐾
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 Mål för projektet
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🔗 **Välja API-strategi:** Använd antingen **REST-API** eller **GraphQL** från [PokeAPI](https://pokeapi.co/).
+- 🧩 **Komponentbaserad design:** Skapa återanvändbara och logiska komponenter.
+- 📡 **Datahämtning:** Hämta data från PokeAPI för att visa Pokémon.
+- 🛣️ **Routing & felhantering:** Använd Next.js routing + en dedikerad **404-sida**.
+- ⚡ **Dynamiskt innehåll:** Möjlighet att interagera med Pokémon-data.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Funktionskrav
 
-## Learn More
+### 🏠 Startsida (`/`)
 
-To learn more about Next.js, take a look at the following resources:
+- Visa en **Featured-sektion** med fyra slumpmässigt utvalda Pokémon.
+- Möjlighet att slumpa fram en **enskild Pokémon** med knapptryck.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔍 Söksida (`/search`)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Sökfält för att skriva in Pokémon-namn.
+- Visa detaljer om den Pokémonen vid sökning.
+- Använd **dynamisk routing** eller `searchParams`.
 
-## Deploy on Vercel
+### 🧩 Filtreringssida (`/types`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Lista alla Pokémontyper (t.ex. Fire 🔥, Water 💧, Grass 🌱).
+- Klick på typ → visa alla Pokémon av den typen.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🚫 404-sida (`/not-found.tsx`)
+
+- Anpassad sida för ogiltiga länkar, felaktiga API-anrop.
+
+---
+
+## ⚙️ Tekniska krav
+
+- ⚛️ **Next.js + React** (med app router).
+- 🖥️ **Serverkomponenter** för all datahämtning.
+- 🎨 Styling med **CSS Modules** eller global CSS.
+
+---
+
+## 💡 Tips & Att tänka på
+
+- 📂 **Komponentstruktur** (exempel):
+
+  - `PokemonCard.tsx` → visar en Pokémon.
+  - `FeaturedList.tsx` → hanterar fyra utvalda Pokémon.
+  - `SearchForm.tsx` → sökfält.
+
+- ❌ **Felhantering:** Tänk på om API-anrop misslyckas eller om Pokémon inte finns.
+
+- ⏳ **Loading-state:** Använd `loading.tsx` för att visa en indikator.
+
+- ⌛ **Async/Await:** Hantera API-anrop snyggt i serverkomponenter.
+
+- ⚛️ **Bolierplate:** Ni hittar en liten startkod till projektet [här](https://github.com/Lexicon-frontend-2025/nextjs_uppgift-pokedex--boilerplate)
+
+---
+
+✨ Lycka till med ditt Pokédex-projekt – fånga dem alla! ⚡🐉
+
+---
+
+![image](pokedex_design_start.png)
