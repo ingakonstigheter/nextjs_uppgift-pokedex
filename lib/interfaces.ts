@@ -1,9 +1,23 @@
 interface Pokemon {
   id: number;
   name: string;
-  type: string;
-  hp: number;
-  attack: number;
-  defense: number;
+  types: PokemonTypes[];
+  stats: PokemonStats[];
   sprites: string[];
+}
+
+interface PokemonStats {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+}
+
+interface PokemonTypes {
+  type: {
+    name: string;
+    url: string;
+  };
 }

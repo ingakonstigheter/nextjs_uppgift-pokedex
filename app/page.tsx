@@ -1,8 +1,6 @@
-import FeaturedPokemons from "@/components/featured-pokemons";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import FeatureList from "@/components/feature-list";
+import SearchForm from "@/components/search-form";
 import Image from "next/image";
-import { CiSearch } from "react-icons/ci";
 
 export default async function Home() {
   return (
@@ -21,25 +19,11 @@ export default async function Home() {
         </button>
       </section>
       <section className="p-10 justify-center flex">
-        <form action="" className="grid w-[400px] items-center gap-2 relative">
-          <Input
-            type="text"
-            placeholder="Search for a Pokemon"
-            className="shadow"
-          />
-          <Button
-            type="submit"
-            variant="outline"
-            className="absolute right-0 size-6 m-2 bg-blue-500">
-            <figure>
-              <CiSearch className="text-white" />
-            </figure>
-          </Button>
-        </form>
+        <SearchForm></SearchForm>
       </section>
       <article className="bg-gradient-to-r from-blue-100 to-purple-100 p-10">
         <h2 className="text-3xl text-center">Featured Pokemons</h2>
-        <FeaturedPokemons></FeaturedPokemons>
+        <FeatureList></FeatureList>
       </article>
     </main>
   );
