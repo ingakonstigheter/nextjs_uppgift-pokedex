@@ -1,9 +1,13 @@
-interface Pokemon {
+interface PokemonFull {
   id: number;
   name: string;
   types: PokemonTypes[];
   stats: PokemonStats[];
   sprites: string[];
+}
+interface PokemonShort {
+  name: string;
+  url: string;
 }
 
 interface PokemonStats {

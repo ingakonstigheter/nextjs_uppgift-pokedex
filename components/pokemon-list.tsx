@@ -11,7 +11,7 @@ export default async function PokemonList() {
 
   return (
     <div className="flex gap-8 justify-center p-10">
-      <PokemonCard pokemon={pokemon}></PokemonCard>
+      <PokemonCard pokemonIdentification={"1"}></PokemonCard>
     </div>
   );
 }

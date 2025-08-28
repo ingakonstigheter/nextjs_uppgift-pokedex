@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Jaldi, Jersey_10 } from "next/font/google";
 import "./globals.css";
-import { Menubar } from "@/components/ui/menubar";
-import Link from "next/link";
+import Navbar from "@/components/navbar";
 
 const jaldi = Jaldi({
   subsets: ["latin"],
@@ -30,13 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jaldi.variable} ${jersey.variable} antialiased`}>
         <header className="content-grid bg-white">
-          <nav>
-            <ul>
-              <li>
-                <Link href={"/pokeDex"}>PokeDex</Link>
-              </li>
-            </ul>
-          </nav>
+          <Navbar></Navbar>
         </header>
         {children}
       </body>

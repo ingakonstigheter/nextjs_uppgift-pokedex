@@ -1,8 +1,15 @@
 import FeatureList from "@/components/feature-list";
-import SearchForm from "@/components/search-form";
-import Image from "next/image";
+import PokemonCard from "@/components/pokemon-card";
+import RandomButton from "@/components/random-button";
+import Search from "@/components/search";
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string }>;
+}) {
+  const { random = "" } = await searchParams;
+  const searchResult: number[] = [];
   return (
     <main>
       <section className="flex flex-col items-center gap-4 bg-gradient-to-br [background-image:linear-gradient(-10deg,_#C97FE4,_#AECDF6)] p-14">
@@ -13,18 +20,22 @@ export default async function Home() {
           Discover, search and explore the amazing world of Pokémon. Find
           <br /> your favourite and learn about their stats.
         </p>
-        <button className="btn-primary">
-          <Image src="/Dice.svg" width={25} height={25} alt="Dice" />
-          Random Pokémon
-        </button>
+        <RandomButton></RandomButton>
+        <PokemonCard pokemonIdentification={`${random}`}></PokemonCard>
       </section>
-      <section className="p-10 justify-center flex">
-        <SearchForm></SearchForm>
-      </section>
+      <div className="p-10 justify-center flex">
+        <Search></Search>
+      </div>
       <article className="bg-gradient-to-r from-blue-100 to-purple-100 p-10">
         <h2 className="text-3xl text-center">Featured Pokemons</h2>
         <FeatureList></FeatureList>
       </article>
+
+      <div>
+        {searchResult.map((id) => (
+          <PokemonCard pokemonIdentification={id.toString()}></PokemonCard>
+        ))}
+      </div>
     </main>
   );
 }

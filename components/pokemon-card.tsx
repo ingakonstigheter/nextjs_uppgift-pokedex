@@ -3,13 +3,25 @@ import Image from "next/image";
 import pokeTypeColors from "@/lib/pokeTypeColors.json";
 import TypeBadges from "./type-badges";
 import { capitalizeFirstLetter } from "@/lib/util";
+import { fetchPokemon } from "@/lib/data/pokemon";
 
-function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
-  const firstType = pokemon.types[0].type.name;
-  const color = pokeTypeColors[firstType as keyof typeof pokeTypeColors];
+export default async function PokemonCard({
+  pokemonIdentification,
+}: {
+  pokemonIdentification: string | undefined;
+}) {
+  const pokemon: PokemonFull | undefined = pokemonIdentification
+    ? await fetchPokemon(pokemonIdentification)
+    : undefined;
+
+  if (!pokemon) {
+    return null;
+  }
+  const color =
+    pokeTypeColors[pokemon.types[0].type.name as keyof typeof pokeTypeColors];
 
   return (
-    <article className="border-4 rounded-xl border-[#637CCE] shadow max-w-[300px] max-h-[450] pt-8 pb-4 px-8 bg-[#F0FDFF] inline-grid gap-1 place-items-center">
+    <article className="border-4 rounded-xl border-[#637CCE] shadow max-w-[300px] pt-8 pb-4 px-8 bg-[#F0FDFF] inline-grid gap-1 place-items-center">
       <Image
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
         alt={`${pokemon.name}`}
@@ -24,7 +36,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         }}>
         {`#${String(pokemon.id).padStart(4, "0")}`}
       </p>
-      <h1 className="text-2xl">{"Bulbasaur"}</h1>
+      <h1 className="text-2xl">{capitalizeFirstLetter(pokemon.name)}</h1>
       <TypeBadges types={pokemon.types}></TypeBadges>
       <table className="text-left w-full font-bold border-collapse">
         <tbody>
@@ -45,5 +57,3 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
     </article>
   );
 }
-
-export default PokemonCard;
