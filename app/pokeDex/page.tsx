@@ -12,15 +12,28 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import TypeBadges from "@/components/type-badges";
-export default async function PokeDex() {
-  const pokemonsShort = await fetchAllPokemon();
-  const pokemonsFull = await fetchPokemons(pokemonsShort);
+
+export default async function Pokedex({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
+  const { query = "" } = await searchParams;
+
+  const pokemonsData = await fetchAllPokemon();
+  if (query) {
+    const allPokemons = pokemonsData.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(query.toLowerCase())
+    );
+    pokemonsData.length = 0;
+    allPokemons.forEach((pokemon) => pokemonsData.push(pokemon));
+  }
+  const pokemonsFull = await fetchPokemons(pokemonsData);
   return (
     <div>
       <h1>Pokedex</h1>
       <div className="p-10 justify-center flex">
         <Search></Search>
-        <input type="checkbox" name="" id="" />
       </div>
 
       <Table>
