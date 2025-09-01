@@ -1,21 +1,22 @@
 import React from "react";
 import pokeTypeColors from "@/lib/pokeTypeColors.json";
-import { capitalizeFirstLetter } from "@/lib/util";
-
+import { PokemonTypes } from "@/lib/interfaces";
+import Link from "next/link";
 export default function TypeBadges({ types }: { types: PokemonTypes[] }) {
   return (
-    <div className="flex gap-0.5">
+    <div className="flex gap-2 justify-center">
       {types.map((type, index) => {
         return (
-          <p
+          <Link
             key={index}
-            className="px-3 rounded-xl font-bold text-white"
+            className="px-2 capitalize w-min h-min rounded-xl font-bold text-white"
             style={{
               backgroundColor:
                 pokeTypeColors[type.type.name as keyof typeof pokeTypeColors],
-            }}>
-            {capitalizeFirstLetter(type.type.name)}
-          </p>
+            }}
+            href={`/pokedex/?type=${type.type.name}`}>
+            {type.type.name}
+          </Link>
         );
       })}
     </div>
