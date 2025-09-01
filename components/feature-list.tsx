@@ -6,7 +6,7 @@ import { MAX_POKEMON } from "@/lib/constants";
 export default async function FeatureList() {
   const randomNumbers = uniqueRandomNumbers(4, MAX_POKEMON);
   return (
-    <div className="grid grid-flow-col gap-4 [grid-template-rows:repeat(5_1fr)] p-4 max-w-[800px] mx-auto">
+    <div className="grid grid-flow-col gap-4 [grid-template-rows:repeat(5_1fr)] p-4 max-w-[1000px] mx-auto">
       {randomNumbers.map((id) => (
         <PokemonCard key={id} id={id.toString()}></PokemonCard>
       ))}

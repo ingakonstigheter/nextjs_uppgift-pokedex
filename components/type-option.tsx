@@ -24,7 +24,7 @@ export default function TypeOption() {
       params.delete("type");
     }
     replace(`/pokedex?${params}`);
-  }, 600);
+  }, 300);
 
   return (
     <div>

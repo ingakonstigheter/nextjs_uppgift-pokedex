@@ -10,13 +10,12 @@ import { MAX_POKEMON } from "@/lib/constants";
 import { notFound } from "next/navigation";
 
 export default async function PokemonCard({ id }: { id: string | undefined }) {
-  
   if (id) {
     if (parseInt(id) < 0 || parseInt(id) > MAX_POKEMON) {
       return notFound();
     }
   }
-  
+
   const pokemon: PokemonFull | undefined = id
     ? await fetchPokemon(id)
     : undefined;
@@ -27,7 +26,7 @@ export default async function PokemonCard({ id }: { id: string | undefined }) {
     pokeTypeColors[pokemon.types[0].type.name as keyof typeof pokeTypeColors];
 
   return (
-    <article className="border-4 rounded max-w-[250px] border-[#637CCE] shadow p-4 bg-[#F0FDFF] grid grid-rows-subgrid row-span-5 gap-1">
+    <article className="border-4 rounded w-[264px] h-[396] border-[#637CCE] shadow p-4 bg-[#F0FDFF] grid grid-rows-subgrid row-span-5 gap-1">
       <h1 className="mx-auto text-2xl">
         <NameLink pokemon={pokemon}></NameLink>
       </h1>

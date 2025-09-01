@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import RandomButton from "./random-button";
 import PokemonCard from "./pokemon-card";
 
@@ -15,7 +15,7 @@ export default async function Hero({ id }: { id: string }) {
       <div className="m-auto">
         <RandomButton></RandomButton>
         <div className="grid gap-4 [grid-template-rows:repeat(5_1fr)] ">
-          <PokemonCard id={`${id}`}></PokemonCard>
+            <PokemonCard id={`${id}`}></PokemonCard>
         </div>
       </div>
     </article>

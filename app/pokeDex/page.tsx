@@ -47,7 +47,7 @@ export default async function Pokedex({
         <TypeRadio></TypeRadio>
       </div>
 
-      <Table className="w-full lg:w-1/2 mx-auto grid max-h-100 ">
+      <Table className="w-full lg:w-1/2 mx-auto grid  max-h-[100px] ">
         <TableBody className="grid grid-cols-[repeat(4_1fr)] m-auto">
           {pokemonsFull.map((pokemon) => (
             <TableRow
