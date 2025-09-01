@@ -27,11 +27,11 @@ export default async function PokemonCard({ id }: { id: string | undefined }) {
 
   return (
     <article className="border-4 rounded w-[264px] h-[396] border-[#637CCE] shadow p-4 bg-[#F0FDFF] grid grid-rows-subgrid row-span-5 gap-1">
-      <h1 className="mx-auto text-2xl">
+      <h1 className="mx-auto text-3xl row-start-3">
         <NameLink pokemon={pokemon}></NameLink>
       </h1>
       <figure
-        className="w-[100px] border-4 rounded-full flex m-auto p-1"
+        className="w-[100px] border-4 rounded-full flex m-auto p-1 row-start-1"
         style={{ borderColor: color }}>
         <Image
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
@@ -41,7 +41,7 @@ export default async function PokemonCard({ id }: { id: string | undefined }) {
           className="object-contain"></Image>
       </figure>
       <p
-        className="rounded-xl w-min px-1 text-white font-bold m-auto"
+        className="rounded-xl w-min px-1 text-white font-bold m-auto row-start-2"
         style={{
           backgroundColor: color,
         }}>

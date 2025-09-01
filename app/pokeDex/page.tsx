@@ -3,7 +3,7 @@ import {
   fetchAllPokemonOfType,
   fetchPokemons,
 } from "@/lib/data/pokemon";
-import React from "react";
+import React, { Suspense } from "react";
 import Search from "@/components/search";
 import Image from "next/image";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
@@ -21,10 +21,12 @@ export default async function Pokedex({
   //fetch all pokemons
   const pokemonsData = await fetchAllPokemon();
   if (type) {
+    //controll th
     const pokemonsOfType = await fetchAllPokemonOfType(type);
     const filteredPokemons = pokemonsData.filter((pokemon) =>
       pokemonsOfType.some((p) => p.pokemon.name === pokemon.name)
     );
+
     pokemonsData.length = 0;
     filteredPokemons.forEach((pokemon) => pokemonsData.push(pokemon));
   }
@@ -40,37 +42,38 @@ export default async function Pokedex({
   const pokemonsFull = await fetchPokemons(pokemonsData);
 
   return (
-    <div className="grid">
+    <section className="grid grid-cols-1 place-items-center">
       <h2 className="text-center text-2xl">Pokedex</h2>
-      <div className="p-10 grid m-auto">
+      <div className="p-10 grid ">
         <Search></Search>
         <TypeRadio></TypeRadio>
       </div>
-
-      <Table className="w-full lg:w-1/2 mx-auto grid  max-h-[100px] ">
-        <TableBody className="grid grid-cols-[repeat(4_1fr)] m-auto">
-          {pokemonsFull.map((pokemon) => (
-            <TableRow
-              key={pokemon.id}
-              className="grid odd:bg-[#F0FDFF] grid-cols-subgrid col-span-4">
-              <TableCell className="grid content-center">{`#${String(pokemon.id).padStart(4, "0")}`}</TableCell>
-              <TableCell className="grid content-center">
-                <NameLink pokemon={pokemon}></NameLink>
-              </TableCell>
-              <TableCell>
-                <Image
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
-                  alt={`${pokemon.name}`}
-                  height={96}
-                  width={96}></Image>
-              </TableCell>
-              <TableCell className="grid content-center">
-                <TypeBadges types={pokemon.types}></TypeBadges>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+      <Suspense>
+        <Table className="max-w-fit grid gap-2">
+          <TableBody className="grid grid-cols-[repeat(4_1fr)] h-[100dvh] m-auto overflow-scroll">
+            {pokemonsFull.map((pokemon) => (
+              <TableRow
+                key={pokemon.id}
+                className="grid odd:bg-[#F0FDFF] grid-cols-subgrid col-span-4">
+                <TableCell className="grid content-center">{`#${String(pokemon.id).padStart(4, "0")}`}</TableCell>
+                <TableCell className="grid content-center">
+                  <NameLink pokemon={pokemon}></NameLink>
+                </TableCell>
+                <TableCell>
+                  <Image
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
+                    alt={`${pokemon.name}`}
+                    height={96}
+                    width={96}></Image>
+                </TableCell>
+                <TableCell className="grid content-center">
+                  <TypeBadges types={pokemon.types}></TypeBadges>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Suspense>
+    </section>
   );
 }

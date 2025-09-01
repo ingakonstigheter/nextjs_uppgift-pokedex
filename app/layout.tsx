@@ -28,11 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jaldi.variable} ${jersey.variable} antialiased`}>
+      <body
+        className={`${jaldi.variable} ${jersey.variable} antialiased`}>
         <header className="content-grid bg-white">
           <Navbar></Navbar>
         </header>
-        <main>{children}</main>
+        <main className="min-h-full">{children}</main>
         <Footer></Footer>
       </body>
     </html>
