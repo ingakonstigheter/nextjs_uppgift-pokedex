@@ -1,15 +1,14 @@
 import React from "react";
 import { uniqueRandomNumbers } from "@/lib/util";
 import PokemonCard from "./pokemon-card";
+import { MAX_POKEMON } from "@/lib/constants";
 
 export default async function FeatureList() {
-  const randomNumbers = uniqueRandomNumbers(4, 1025);
+  const randomNumbers = uniqueRandomNumbers(4, MAX_POKEMON);
   return (
-    <div className="flex gap-8 justify-center p-10">
+    <div className="grid grid-flow-col gap-4 [grid-template-rows:repeat(5_1fr)] p-4 max-w-[800px] mx-auto">
       {randomNumbers.map((id) => (
-        <PokemonCard
-          key={id}
-          pokemonIdentification={id.toString()}></PokemonCard>
+        <PokemonCard key={id} id={id.toString()}></PokemonCard>
       ))}
     </div>
   );

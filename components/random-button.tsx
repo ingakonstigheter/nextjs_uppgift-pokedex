@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { randomNumber } from "@/lib/util";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { MAX_POKEMON } from "@/lib/constants";
 export default function RandomButton() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -32,7 +33,7 @@ export default function RandomButton() {
         <button
           className="btn-primary"
           type="submit"
-          onClick={() => handleClick(randomNumber(1025).toString())}>
+          onClick={() => handleClick(randomNumber(MAX_POKEMON).toString())}>
           <Image src="/Dice.svg" width={25} height={25} alt="Dice" />
           Random Pokémon
         </button>

@@ -1,27 +1,36 @@
-import { fetchAllPokemon, fetchPokemons } from "@/lib/data/pokemon";
+import {
+  fetchAllPokemon,
+  fetchAllPokemonOfType,
+  fetchPokemons,
+} from "@/lib/data/pokemon";
 import React from "react";
 import Search from "@/components/search";
-import Link from "next/link";
 import Image from "next/image";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import TypeBadges from "@/components/type-badges";
+import TypeRadio, { PokemonTypesShort } from "@/components/type-option";
+import NameLink from "@/components/name-link";
 
 export default async function Pokedex({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const { query = "" } = await searchParams;
+  const { query = "", type = "" } = await searchParams;
 
+  //fetch all pokemons
   const pokemonsData = await fetchAllPokemon();
+  if (type) {
+    const pokemonsOfType = await fetchAllPokemonOfType(type);
+    const filteredPokemons = pokemonsData.filter((pokemon) =>
+      pokemonsOfType.some((p) => p.pokemon.name === pokemon.name)
+    );
+    pokemonsData.length = 0;
+    filteredPokemons.forEach((pokemon) => pokemonsData.push(pokemon));
+  }
+
   if (query) {
+    //filter pokemons based on search params
     const allPokemons = pokemonsData.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(query.toLowerCase())
     );
@@ -29,40 +38,33 @@ export default async function Pokedex({
     allPokemons.forEach((pokemon) => pokemonsData.push(pokemon));
   }
   const pokemonsFull = await fetchPokemons(pokemonsData);
+
   return (
-    <div>
-      <h1>Pokedex</h1>
-      <div className="p-10 justify-center flex">
+    <div className="grid">
+      <h2 className="text-center text-2xl">Pokedex</h2>
+      <div className="p-10 grid m-auto">
         <Search></Search>
+        <TypeRadio></TypeRadio>
       </div>
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>ID</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Image</TableHead>
-            <TableHead>Type</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
+      <Table className="w-full lg:w-1/2 mx-auto grid max-h-100 ">
+        <TableBody className="grid grid-cols-[repeat(4_1fr)] m-auto">
           {pokemonsFull.map((pokemon) => (
-            <TableRow key={pokemon.id}>
-              <TableCell>{pokemon.id}</TableCell>
-              <TableCell>
-                <Link href={""}>{pokemon.name.toUpperCase()}</Link>
+            <TableRow
+              key={pokemon.id}
+              className="grid odd:bg-[#F0FDFF] grid-cols-subgrid col-span-4">
+              <TableCell className="grid content-center">{`#${String(pokemon.id).padStart(4, "0")}`}</TableCell>
+              <TableCell className="grid content-center">
+                <NameLink pokemon={pokemon}></NameLink>
               </TableCell>
               <TableCell>
-                <figure>
-                  <Image
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
-                    alt={`${pokemon.name}`}
-                    height={100}
-                    width={100}
-                    className=" rounded-full"></Image>
-                </figure>
+                <Image
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
+                  alt={`${pokemon.name}`}
+                  height={96}
+                  width={96}></Image>
               </TableCell>
-              <TableCell>
+              <TableCell className="grid content-center">
                 <TypeBadges types={pokemon.types}></TypeBadges>
               </TableCell>
             </TableRow>

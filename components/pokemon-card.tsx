@@ -2,18 +2,24 @@ import React from "react";
 import Image from "next/image";
 import pokeTypeColors from "@/lib/pokeTypeColors.json";
 import TypeBadges from "./type-badges";
-import { capitalizeFirstLetter } from "@/lib/util";
 import { fetchPokemon } from "@/lib/data/pokemon";
+import { PokemonFull } from "@/lib/interfaces";
+import StatusTable from "./status-table";
+import NameLink from "./name-link";
+import { MAX_POKEMON } from "@/lib/constants";
+import { notFound } from "next/navigation";
 
-export default async function PokemonCard({
-  pokemonIdentification,
-}: {
-  pokemonIdentification: string | undefined;
-}) {
-  const pokemon: PokemonFull | undefined = pokemonIdentification
-    ? await fetchPokemon(pokemonIdentification)
+export default async function PokemonCard({ id }: { id: string | undefined }) {
+  
+  if (id) {
+    if (parseInt(id) < 0 || parseInt(id) > MAX_POKEMON) {
+      return notFound();
+    }
+  }
+  
+  const pokemon: PokemonFull | undefined = id
+    ? await fetchPokemon(id)
     : undefined;
-
   if (!pokemon) {
     return null;
   }
@@ -21,39 +27,30 @@ export default async function PokemonCard({
     pokeTypeColors[pokemon.types[0].type.name as keyof typeof pokeTypeColors];
 
   return (
-    <article className="border-4 rounded-xl border-[#637CCE] shadow max-w-[300px] pt-8 pb-4 px-8 bg-[#F0FDFF] inline-grid gap-1 place-items-center">
-      <Image
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
-        alt={`${pokemon.name}`}
-        height={200}
-        width={200}
-        className="border-4 p-3 rounded-full"
-        style={{ borderColor: color }}></Image>
+    <article className="border-4 rounded max-w-[250px] border-[#637CCE] shadow p-4 bg-[#F0FDFF] grid grid-rows-subgrid row-span-5 gap-1">
+      <h1 className="mx-auto text-2xl">
+        <NameLink pokemon={pokemon}></NameLink>
+      </h1>
+      <figure
+        className="w-[100px] border-4 rounded-full flex m-auto p-1"
+        style={{ borderColor: color }}>
+        <Image
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
+          alt={`${pokemon.name}`}
+          height={96}
+          width={96}
+          className="object-contain"></Image>
+      </figure>
       <p
-        className="rounded-xl px-0.5 text-white font-bold"
+        className="rounded-xl w-min px-1 text-white font-bold m-auto"
         style={{
           backgroundColor: color,
         }}>
         {`#${String(pokemon.id).padStart(4, "0")}`}
       </p>
-      <h1 className="text-2xl">{capitalizeFirstLetter(pokemon.name)}</h1>
       <TypeBadges types={pokemon.types}></TypeBadges>
-      <table className="text-left w-full font-bold border-collapse">
-        <tbody>
-          <tr>
-            <th>{`${pokemon.stats[0].stat.name.toUpperCase()}`}</th>
-            <td className="text-right">{`${pokemon.stats[0].base_stat}`}</td>
-          </tr>
-          <tr>
-            <th>{`${capitalizeFirstLetter(pokemon.stats[1].stat.name)}`}</th>
-            <td className="text-right">{`${pokemon.stats[1].base_stat}`}</td>
-          </tr>
-          <tr>
-            <th>{`${capitalizeFirstLetter(pokemon.stats[2].stat.name)}`}</th>
-            <td className="text-right">{`${pokemon.stats[2].base_stat}`}</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <StatusTable status={pokemon.stats.slice(0, 3)}></StatusTable>
     </article>
   );
 }

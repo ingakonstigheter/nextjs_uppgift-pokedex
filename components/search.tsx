@@ -5,13 +5,16 @@ import { Input } from "./ui/input";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function Search() {
+export default function Search({ deleteQuery }: { deleteQuery?: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
   const handleChange = useDebouncedCallback((queryString: string) => {
     const params = new URLSearchParams(searchParams);
+    if (deleteQuery) {
+      params.delete(deleteQuery);
+    }
     if (queryString) {
       params.set("query", queryString);
     } else {
