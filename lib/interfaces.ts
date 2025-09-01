@@ -1,16 +1,16 @@
-interface PokemonFull {
+export interface PokemonFull {
   id: number;
   name: string;
   types: PokemonTypes[];
   stats: PokemonStats[];
   sprites: string[];
 }
-interface PokemonShort {
+export interface PokemonShort {
   name: string;
   url: string;
 }
 
-interface PokemonStats {
+export interface PokemonStats {
   base_stat: number;
   effort: number;
   stat: {
@@ -19,8 +19,15 @@ interface PokemonStats {
   };
 }
 
-interface PokemonTypes {
+export interface PokemonTypes {
   type: {
+    name: string;
+    url: string;
+  };
+}
+
+export interface PokemonTypesShort {
+  pokemon: {
     name: string;
     url: string;
   };
