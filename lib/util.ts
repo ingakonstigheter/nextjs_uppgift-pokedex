@@ -22,7 +22,3 @@ export function uniqueRandomNumbers(amount: number, max: number) {
   }
   return numbers;
 }
-
-export function capitalizeFirstLetter(val: string) {
-  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
-}
