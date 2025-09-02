@@ -3,8 +3,8 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="h-[345px] bg-[#2D2D2D] grid justify-center mt-auto">
-      <Link href={"/"} className="flex self-center ">
+    <footer className="p-10 bg-[#2D2D2D] grid justify-center mt-auto">
+      <Link href={"/"} className="flex">
         <p className="text-4xl font-bold text-transparent text-center bg-gradient-to-r from-purple-800 to-blue-800 [background-clip:text] ">
           PokeDex
         </p>

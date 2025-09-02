@@ -71,11 +71,8 @@ h3 {
   --c2: var(--color-neutral-500);
   --c3: var(--color-neutral-700);
 
-  background: repeating-conic-gradient(
-        from 30deg,
-        #0000 0 120deg,
-        var(--c3) 0 50%
-      )
+  background:
+    repeating-conic-gradient(from 30deg, #0000 0 120deg, var(--c3) 0 50%)
       calc(var(--s) / 2) calc(var(--s) * tan(30deg) / 2),
     repeating-conic-gradient(
       from 30deg,

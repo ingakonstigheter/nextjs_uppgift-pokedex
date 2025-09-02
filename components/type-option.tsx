@@ -27,14 +27,16 @@ export default function TypeOption() {
   }, 300);
 
   return (
-    <div>
-      <label htmlFor="typeSelect">Filter by type</label>
+    <div className="flex gap-1 p-2">
+      <label htmlFor="typeSelect" className="self-center">
+        Filter by type
+      </label>
       <select
         name="type-select"
         id="typeSelect"
         defaultValue={searchParams.getAll("type")?.toString()}
         onChange={(e) => handleChange(e.target.value)}
-        className="text-center">
+        className="text-center bg-white rounded-2xl">
         <option value="">all</option>
         {POKEMON_TYPES.map((type, index) => (
           <option

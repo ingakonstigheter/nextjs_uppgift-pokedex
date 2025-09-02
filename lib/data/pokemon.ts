@@ -65,8 +65,12 @@ export async function fetchAllPokemonOfType(
       throw new Error("There was a problem, the pokemon's escaped, ");
     }
 
-    const data = await response.json();
-    return data.pokemon;
+    const {
+      pokemon: { pokemon },
+    } = await response.json();
+    console.log(pokemon);
+
+    return pokemon;
   } catch (e: any) {
     throw {
       status: e.status,

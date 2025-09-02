@@ -15,7 +15,9 @@ export default async function Hero({ id }: { id: string }) {
       <div className="m-auto">
         <RandomButton></RandomButton>
         <div className="grid gap-4 [grid-template-rows:repeat(5_1fr)] ">
+          <Suspense>
             <PokemonCard id={`${id}`}></PokemonCard>
+          </Suspense>
         </div>
       </div>
     </article>

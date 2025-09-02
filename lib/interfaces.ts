@@ -25,10 +25,9 @@ export interface PokemonTypes {
     url: string;
   };
 }
-
-export interface PokemonTypesShort {
-  pokemon: {
-    name: string;
-    url: string;
-  };
-}
+  export interface PokemonTypesShort {
+    pokemon: {
+      name: string;
+      url: string;
+    }
+  }

@@ -6,7 +6,6 @@ import TypeBadges from "@/components/type-badges";
 import { PokemonFull } from "@/lib/interfaces";
 import StatusTable from "@/components/status-table";
 import NameLink from "@/components/name-link";
-import { MAX_POKEMON } from "@/lib/constants";
 
 export default async function PokemonPage({
   params,
@@ -20,14 +19,13 @@ export default async function PokemonPage({
   if (!pokemon) return notFound();
 
   return (
-    <article className="grid grid-cols-1 md:grid-cols-2  max-w-[80ch] m-auto">
+    <article className="grid w-full min-h-dvh grid-cols-1 md:grid-cols-2 bg-gradient-to-r from-blue-100 to-purple-100 p-4">
       <div>
         <div className="flex justify-center gap-4">
           <h1 className="text-5xl">
             <NameLink pokemon={pokemon}></NameLink>
           </h1>
           <p className="text-5xl">
-            {" "}
             {`#${String(pokemon.id).padStart(4, "0")}`}
           </p>
         </div>

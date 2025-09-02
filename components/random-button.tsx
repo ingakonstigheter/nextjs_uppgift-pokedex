@@ -10,9 +10,7 @@ export default function RandomButton() {
   const { replace } = useRouter();
 
   const handleClick = (queryString: string) => {
-    console.log("hej");
-    console.log(queryString);
-
+    
     const params = new URLSearchParams(searchParams);
     if (queryString) {
       params.set("random", queryString);
