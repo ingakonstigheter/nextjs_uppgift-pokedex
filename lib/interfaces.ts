@@ -26,7 +26,7 @@ export interface PokemonTypes {
   };
 }
 
-export interface PokemonTypesShort {
+export interface PokemonTypesFull {
   pokemon: {
     name: string;
     url: string;
@@ -38,4 +38,15 @@ export interface PagnationProps {
   href: string;
   prompt: string;
   display: boolean;
+}
+
+export interface StatusInfo {
+  base_stat: number;
+  stat: {
+    name: string;
+  };
+}
+export interface PokemonTypesShort {
+  name: string;
+  url: string;
 }

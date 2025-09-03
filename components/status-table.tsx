@@ -1,11 +1,7 @@
 import React from "react";
 import { Table, TableBody, TableCell, TableHead, TableRow } from "./ui/table";
-interface StatusInfo {
-  base_stat: number;
-  stat: {
-    name: string;
-  };
-}
+import { StatusInfo } from "@/lib/interfaces";
+
 export default function StatusTable({ status }: { status: StatusInfo[] }) {
   return (
     <Table className="text-left font-bold mx-auto max-w-[50ch]">

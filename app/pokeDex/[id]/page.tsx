@@ -8,8 +8,6 @@ import StatusTable from "@/components/status-table";
 import NameLink from "@/components/poke-link";
 import { MAX_POKEMON, SMALLEST_ID } from "@/lib/constants";
 import PagnationButton from "@/components/pagnation-button";
-import { ArrowBigRight } from "lucide-react";
-import { BsArrowRight } from "react-icons/bs";
 
 function GetPokemon({ pokemon }: { pokemon: PokemonFull }) {
   return (

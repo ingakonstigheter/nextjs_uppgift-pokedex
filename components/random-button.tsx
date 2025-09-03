@@ -4,6 +4,7 @@ import Image from "next/image";
 import { randomNumber } from "@/lib/util";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { MAX_POKEMON } from "@/lib/constants";
+
 export default function RandomButton() {
   const searchParams = useSearchParams();
   const pathname = usePathname();

@@ -10,11 +10,28 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import TypeBadges from "@/components/type-badges";
 import TypeRadio from "@/components/type-option";
 import PokeLink from "@/components/poke-link";
-import { PokemonFull } from "@/lib/interfaces";
 
-function PokemonList({ pokemons }: { pokemons: PokemonFull[] }) {
+async function PokemonList({ query, type }: { query: string; type: string }) {
+  let pokemonsData = await fetchAllPokemon();
+  /* if type filter by type */
+  if (type !== "") {
+    const pokemonsOfType = await fetchAllPokemonOfType(type);
+
+    pokemonsData = pokemonsData.filter((pokemon) =>
+      pokemonsOfType.some((pokeOfType) => pokeOfType.name === pokemon.name)
+    );
+  }
+  /* if query filter by query */
+  if (query !== "") {
+    pokemonsData = pokemonsData.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
+  const pokemons = await fetchPokemons(pokemonsData);
+
   return (
-    <Table className="grid">
+    <Table className="grid  mb-auto">
       <TableBody className="grid mx-auto max-h-dvh overflow-y-auto scroll-auto md:w-2/3 lg:w-1/2 grid-cols-[repeat(4_1fr)]">
         {pokemons.map((pokemon) => (
           <TableRow
@@ -55,23 +72,6 @@ export default async function Pokedex({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const { query = "", type = "" } = await searchParams;
-  let pokemonsData = await fetchAllPokemon();
-  /* if type filter by type */
-  if (type !== "") {
-    const pokemonsOfType = await fetchAllPokemonOfType(type);
-
-    pokemonsData = pokemonsData.filter((pokemon) =>
-      pokemonsOfType.some((pokeOfType) => pokeOfType.name === pokemon.name)
-    );
-  }
-  /* if query filter by query */
-  if (query !== "") {
-    pokemonsData = pokemonsData.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(query.toLowerCase())
-    );
-  }
-
-  const pokemonsFull = await fetchPokemons(pokemonsData);
 
   return (
     <section className="grid grid-rows-[auto_auto_1fr] min-h-dvh place-items-center bg-gradient-to-r from-blue-100 to-purple-100 p-4">
@@ -83,8 +83,8 @@ export default async function Pokedex({
         <TypeRadio></TypeRadio>
       </div>
 
-      <Suspense fallback="Loading...">
-        <PokemonList pokemons={pokemonsFull}></PokemonList>
+      <Suspense fallback="Try'na catch all the pokemons...">
+        <PokemonList query={query} type={type}></PokemonList>
       </Suspense>
     </section>
   );

@@ -1,6 +1,6 @@
-import { PokemonTypesShort } from "@/components/type-option";
+import { PokemonTypesShort } from "./interfaces";
 
-export const MAX_POKEMON = 15;
+export const MAX_POKEMON = 5;
 export const SMALLEST_ID = 1;
 
 export const POKEMON_TYPES: PokemonTypesShort[] = [

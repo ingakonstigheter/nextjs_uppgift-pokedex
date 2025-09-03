@@ -12,7 +12,7 @@ import PokeLink from "./poke-link";
 export default async function PokemonCard({ id }: { id: string | undefined }) {
   /* Returns not found if id over/under the intervall of pokemons pre fetching */
   if (id) {
-    if (parseInt(id) < SMALLEST_ID || parseInt(id) >= MAX_POKEMON) {
+    if (parseInt(id) < SMALLEST_ID || parseInt(id) > MAX_POKEMON) {
       return notFound();
     }
   }

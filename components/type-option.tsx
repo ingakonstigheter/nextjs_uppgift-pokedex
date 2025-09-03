@@ -1,21 +1,15 @@
 "use client";
 import { POKEMON_TYPES } from "@/lib/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import { useDebouncedCallback } from "use-debounce";
-
-export interface PokemonTypesShort {
-  [x: string]: any;
-  name: string;
-  url: string;
-}
 
 export default function TypeOption() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleChange = useDebouncedCallback((queryString: string) => {
+  const handleChange = (queryString: string) => {
     const params = new URLSearchParams(searchParams);
 
     if (queryString) {
@@ -24,7 +18,7 @@ export default function TypeOption() {
       params.delete("type");
     }
     replace(`${pathname}?${params}`);
-  }, 100);
+  };
 
   return (
     <div className="flex gap-1 p-2">

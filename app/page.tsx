@@ -21,7 +21,7 @@ export default async function Home({
       <section className="bg-gradient-to-r from-blue-100 to-purple-100 grid gap-2 justify-center py-4">
         <h2 className="text-5xl text-center">Featured Pokemons</h2>
 
-        <Suspense>
+        <Suspense fallback="Loading...">
           <FeatureList></FeatureList>
         </Suspense>
       </section>
