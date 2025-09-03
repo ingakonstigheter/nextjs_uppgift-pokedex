@@ -26,6 +26,7 @@ export async function fetchPokemons(
     const results = await Promise.all(
       list.map((pokemon) => fetchPokemon(pokemon.name))
     );
+    
     return results;
   } catch (e: any) {
     throw {
@@ -57,7 +58,7 @@ export async function fetchAllPokemon(): Promise<PokemonShort[]> {
 
 export async function fetchAllPokemonOfType(
   type: string
-): Promise<PokemonTypesShort[]> {
+): Promise<PokemonShort[]> {
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
 
@@ -65,12 +66,9 @@ export async function fetchAllPokemonOfType(
       throw new Error("There was a problem, the pokemon's escaped, ");
     }
 
-    const {
-      pokemon: { pokemon },
-    } = await response.json();
-    console.log(pokemon);
+    const data = await response.json();
 
-    return pokemon;
+    return data.pokemon.map((item: { pokemon: PokemonShort }) => item.pokemon);
   } catch (e: any) {
     throw {
       status: e.status,

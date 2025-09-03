@@ -9,7 +9,6 @@ export default function Search() {
 
   const handleChange = useDebouncedCallback((queryString: string) => {
     const params = new URLSearchParams(searchParams);
-
     params.delete("random");
 
     if (queryString !== "") {
@@ -17,6 +16,7 @@ export default function Search() {
     } else {
       params.delete("query");
     }
+
     replace(`/pokedex?${params}`);
   }, 600);
 
@@ -25,6 +25,7 @@ export default function Search() {
       <label className="sr-only" htmlFor="search">
         Search
       </label>
+
       <Input
         type="text"
         placeholder="Search for a Pokemon"

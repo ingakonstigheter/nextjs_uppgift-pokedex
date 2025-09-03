@@ -23,14 +23,15 @@ export default function TypeOption() {
     } else {
       params.delete("type");
     }
-    replace(`/pokedex?${params}`);
-  }, 300);
+    replace(`${pathname}?${params}`);
+  }, 100);
 
   return (
     <div className="flex gap-1 p-2">
       <label htmlFor="typeSelect" className="self-center">
         Filter by type
       </label>
+
       <select
         name="type-select"
         id="typeSelect"
@@ -38,6 +39,7 @@ export default function TypeOption() {
         onChange={(e) => handleChange(e.target.value)}
         className="text-center bg-white rounded-2xl">
         <option value="">all</option>
+
         {POKEMON_TYPES.map((type, index) => (
           <option
             key={index}

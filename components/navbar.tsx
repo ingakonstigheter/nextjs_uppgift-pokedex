@@ -14,6 +14,7 @@ export default function Navbar() {
           PokeDex
         </h1>
       </Link>
+
       <ul className="flex gap-2 ml-auto mt-auto p-4">
         {links.map((link, index) => (
           <li key={index}>

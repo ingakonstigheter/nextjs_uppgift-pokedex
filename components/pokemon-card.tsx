@@ -12,7 +12,7 @@ import PokeLink from "./poke-link";
 export default async function PokemonCard({ id }: { id: string | undefined }) {
   /* Returns not found if id over/under the intervall of pokemons pre fetching */
   if (id) {
-    if (parseInt(id) < SMALLEST_ID || parseInt(id) > MAX_POKEMON) {
+    if (parseInt(id) < SMALLEST_ID || parseInt(id) >= MAX_POKEMON) {
       return notFound();
     }
   }
@@ -34,6 +34,7 @@ export default async function PokemonCard({ id }: { id: string | undefined }) {
       <h1 className="mx-auto text-3xl row-start-3">
         <PokeLink id={pokemon.id.toString()} name={pokemon.name}></PokeLink>
       </h1>
+
       {/* Image */}
       <figure
         className="w-[100px] border-4 rounded-full flex m-auto p-1 row-start-1"
@@ -45,6 +46,7 @@ export default async function PokemonCard({ id }: { id: string | undefined }) {
           width={96}
           className="object-contain"></Image>
       </figure>
+
       {/* number id */}
       <p
         className="rounded-xl w-min px-1 text-white font-bold m-auto row-start-2"
@@ -53,8 +55,10 @@ export default async function PokemonCard({ id }: { id: string | undefined }) {
         }}>
         {`#${String(pokemon.id).padStart(4, "0")}`}
       </p>
+
       {/* type badges */}
       <TypeBadges types={pokemon.types}></TypeBadges>
+
       {/* status table */}
       <StatusTable status={pokemon.stats.slice(0, 3)}></StatusTable>
     </article>

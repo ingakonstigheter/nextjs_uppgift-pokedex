@@ -9,6 +9,7 @@ export default function Footer() {
           PokeDex
         </p>
       </Link>
+
       <p className="text-center text-2xl text-white">
         Explore the world of Pokemon
       </p>

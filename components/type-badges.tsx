@@ -1,7 +1,8 @@
 import React from "react";
-import pokeTypeColors from "@/lib/pokeTypeColors.json";
+import pokeTypeColors from "@/lib/poke-type-colors.json";
 import { PokemonTypes } from "@/lib/interfaces";
 import Link from "next/link";
+
 export default function TypeBadges({ types }: { types: PokemonTypes[] }) {
   return (
     <div className="flex gap-2 justify-center">

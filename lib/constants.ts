@@ -1,6 +1,7 @@
 import { PokemonTypesShort } from "@/components/type-option";
 
 export const MAX_POKEMON = 15;
+export const SMALLEST_ID = 1;
 
 export const POKEMON_TYPES: PokemonTypesShort[] = [
   { name: "normal", url: "https://pokeapi.co/api/v2/type/1/" },

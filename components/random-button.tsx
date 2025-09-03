@@ -10,15 +10,17 @@ export default function RandomButton() {
   const { replace } = useRouter();
 
   const handleClick = (queryString: string) => {
-    
     const params = new URLSearchParams(searchParams);
+
     if (queryString) {
       params.set("random", queryString);
     } else {
       params.delete("random");
     }
+
     replace(`${pathname}?${params}`);
   };
+
   return (
     <>
       <div>
@@ -28,6 +30,7 @@ export default function RandomButton() {
           name="random"
           defaultValue={searchParams.get("random")?.toString()}
         />
+
         <button
           className="btn-primary"
           type="submit"

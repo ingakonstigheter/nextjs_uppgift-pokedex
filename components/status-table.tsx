@@ -13,6 +13,7 @@ export default function StatusTable({ status }: { status: StatusInfo[] }) {
         {status.map((item, index) => (
           <TableRow key={index}>
             <TableHead className="font-bold">{`${item.stat.name.toUpperCase()}`}</TableHead>
+
             <TableCell className="text-right">{`${item.base_stat}`}</TableCell>
           </TableRow>
         ))}
