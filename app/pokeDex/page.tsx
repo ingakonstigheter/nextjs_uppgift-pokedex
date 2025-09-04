@@ -10,6 +10,12 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import TypeBadges from "@/components/type-badges";
 import TypeRadio from "@/components/type-option";
 import PokeLink from "@/components/poke-link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Pokedex - pokedex",
+  description: "Search and show the original 151 pokemons and their stats",
+};
 
 async function PokemonList({ query, type }: { query: string; type: string }) {
   let pokemonsData = await fetchAllPokemon();

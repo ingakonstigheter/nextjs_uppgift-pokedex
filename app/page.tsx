@@ -1,7 +1,13 @@
 import FeatureList from "@/components/feature-list";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
+import { Metadata } from "next";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "Pokedex - start",
+  description: "Homepage that displays random Pokemons, Search and show the original 151 pokemons and their stats",
+};
 
 export default async function Home({
   searchParams,
