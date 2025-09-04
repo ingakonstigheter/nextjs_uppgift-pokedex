@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import {
   fetchAllPokemon,
   fetchAllPokemonOfType,
@@ -72,6 +74,7 @@ async function PokemonList({ query, type }: { query: string; type: string }) {
     </Table>
   );
 }
+
 export default async function PokedexPage({
   searchParams,
 }: {
