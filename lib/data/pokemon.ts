@@ -1,4 +1,3 @@
-import { PokemonTypesShort } from "@/components/type-option";
 import { MAX_POKEMON } from "../constants";
 import { PokemonFull, PokemonShort } from "../interfaces";
 

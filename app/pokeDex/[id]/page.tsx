@@ -44,7 +44,7 @@ export default async function PokemonPage({
   const { id } = await params;
 
   if (id) {
-    if (parseInt(id) < SMALLEST_ID || parseInt(id) >= MAX_POKEMON) {
+    if (parseInt(id) < SMALLEST_ID || parseInt(id) > MAX_POKEMON) {
       return notFound();
     }
   }

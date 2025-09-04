@@ -18,7 +18,7 @@ export default async function Home({
         <Search></Search>
       </section>
 
-      <section className="bg-gradient-to-r from-blue-100 to-purple-100 grid gap-2 justify-center py-4">
+      <section className="bg-gradient-to-r from-blue-100 to-purple-100 grid gap-4 y-center p-8">
         <h2 className="text-5xl text-center">Featured Pokemons</h2>
 
         <Suspense fallback="Loading...">
