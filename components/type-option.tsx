@@ -1,8 +1,7 @@
 "use client";
 import { POKEMON_TYPES } from "@/lib/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { Suspense } from "react";
-import { useDebouncedCallback } from "use-debounce";
+import React from "react";
 
 export default function TypeOption() {
   const searchParams = useSearchParams();

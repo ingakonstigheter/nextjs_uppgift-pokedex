@@ -8,7 +8,7 @@ import StatusTable from "@/components/status-table";
 import NameLink from "@/components/poke-link";
 import { MAX_POKEMON, SMALLEST_ID } from "@/lib/constants";
 import PagnationButton from "@/components/pagnation-button";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -16,10 +16,8 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
+  { params}: Props
 ): Promise<Metadata> {
-  // read route params
   const { id } = await params;
 
   if (id) {
@@ -27,9 +25,8 @@ export async function generateMetadata(
       return notFound();
     }
   }
-  // fetch data
-  const pokemon: PokemonFull = await fetchPokemon(id);
 
+  const pokemon: PokemonFull = await fetchPokemon(id);
   return {
     title: `Pokedex - ${pokemon.name}`,
   };

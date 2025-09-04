@@ -10,11 +10,8 @@ export async function fetchPokemon(id: string): Promise<PokemonFull> {
     }
 
     return await response.json();
-  } catch (e: any) {
-    throw {
-      status: e.status,
-      message: e.statusText || "Network error",
-    };
+  } catch (error) {
+    throw new Error("There was an error with the API" + error);
   }
 }
 
@@ -25,13 +22,11 @@ export async function fetchPokemons(
     const results = await Promise.all(
       list.map((pokemon) => fetchPokemon(pokemon.name))
     );
-    
+
     return results;
-  } catch (e: any) {
-    throw {
-      status: e.status,
-      message: e.statusText || "Network error",
-    };
+  } catch (error) {
+    console.log("Network Error: " + error);
+    return [];
   }
 }
 
@@ -47,11 +42,9 @@ export async function fetchAllPokemon(): Promise<PokemonShort[]> {
 
     const data = await response.json();
     return data.results;
-  } catch (e: any) {
-    throw {
-      status: e.status,
-      message: e.statusText || "Network erorr",
-    };
+  } catch (error) {
+    console.log("Network Error: " + error);
+    return [];
   }
 }
 
@@ -68,10 +61,8 @@ export async function fetchAllPokemonOfType(
     const data = await response.json();
 
     return data.pokemon.map((item: { pokemon: PokemonShort }) => item.pokemon);
-  } catch (e: any) {
-    throw {
-      status: e.status,
-      message: e.statusText || "Network erorr",
-    };
+  } catch (error) {
+    console.log("Network Error: " + error);
+    return [];
   }
 }

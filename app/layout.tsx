@@ -33,7 +33,7 @@ export default function RootLayout({
         <header className="content-grid bg-white">
           <Navbar></Navbar>
         </header>
-        <main >{children}</main>
+        <main>{children}</main>
         <Footer></Footer>
       </body>
     </html>
