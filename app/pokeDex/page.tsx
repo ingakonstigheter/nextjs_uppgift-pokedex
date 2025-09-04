@@ -8,14 +8,16 @@ import Search from "@/components/search";
 import Image from "next/image";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import TypeBadges from "@/components/type-badges";
-import TypeRadio from "@/components/type-option";
+import TypeOption from "@/components/type-option";
 import PokeLink from "@/components/poke-link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pokedex - pokedex",
-  description: "Search and show the original 151 pokemons and their stats",
+  description: "Search and show the original 151 pokemons",
 };
+
+export function generateStaticParams() {}
 
 async function PokemonList({ query, type }: { query: string; type: string }) {
   let pokemonsData = await fetchAllPokemon();
@@ -72,7 +74,7 @@ async function PokemonList({ query, type }: { query: string; type: string }) {
     </Table>
   );
 }
-export default async function Pokedex({
+export default async function PokedexPage({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
@@ -83,15 +85,15 @@ export default async function Pokedex({
     <section className="grid grid-rows-[auto_auto_1fr] min-h-dvh place-items-center bg-gradient-to-r from-blue-100 to-purple-100 p-4">
       <h2 className="text-center text-5xl">Pokedex</h2>
 
-      <div className="p-10 grid ">
-        <Search></Search>
+      <div className="p-10 grid "></div>
+      {/*         <Search></Search>
 
-        <TypeRadio></TypeRadio>
+        <TypeOption></TypeOption>
       </div>
 
-      <Suspense fallback="Try'na catch all the pokemons...">
+      <Suspense fallback="Catching all the pokemons...">
         <PokemonList query={query} type={type}></PokemonList>
-      </Suspense>
+      </Suspense> */}
     </section>
   );
 }

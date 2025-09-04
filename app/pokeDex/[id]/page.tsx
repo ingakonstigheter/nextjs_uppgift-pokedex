@@ -15,9 +15,7 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata(
-  { params}: Props
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
 
   if (id) {
@@ -29,6 +27,7 @@ export async function generateMetadata(
   const pokemon: PokemonFull = await fetchPokemon(id);
   return {
     title: `Pokedex - ${pokemon.name}`,
+    description: `Information about ${pokemon.name}`,
   };
 }
 
