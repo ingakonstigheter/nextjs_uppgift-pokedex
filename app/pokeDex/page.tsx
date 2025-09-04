@@ -78,8 +78,8 @@ export default async function PokedexPage({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const params = await searchParams;
-  const { query = "", type = "" } = params;
+  const { query = "", type = "" } = await searchParams;
+
   return (
     <section className="grid grid-rows-[auto_auto_1fr] min-h-dvh place-items-center bg-gradient-to-r from-blue-100 to-purple-100 p-4">
       <h2 className="text-center text-5xl">Pokedex</h2>
