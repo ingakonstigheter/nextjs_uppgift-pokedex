@@ -1,4 +1,8 @@
-import { fetchPokemon } from "@/lib/data/pokemon";
+import {
+  fetchAllPokemon,
+  fetchPokemon,
+  fetchPokemons,
+} from "@/lib/data/pokemon";
 import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 import Image from "next/image";
@@ -14,6 +18,15 @@ type Props = {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+
+export async function generateStaticParams() {
+  const allPokemonsShortList = await fetchAllPokemon();
+
+  const allPokemonsFull = await fetchPokemons(allPokemonsShortList);
+  return allPokemonsFull.map((pokemon) => ({
+    slug: pokemon.id,
+  }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
