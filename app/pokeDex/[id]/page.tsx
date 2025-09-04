@@ -19,15 +19,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
 
   if (id) {
-    if (parseInt(id) < SMALLEST_ID || parseInt(id) > MAX_POKEMON) {
-      return notFound();
+    if (
+      Number.isNaN(parseInt(id)) ||
+      parseInt(id) < SMALLEST_ID ||
+      parseInt(id) > MAX_POKEMON
+    ) {
+      return {
+        title: `Pokedex - Not Found`,
+        description: `No such Pokemon`,
+      };
     }
+    const pokemon: PokemonFull = await fetchPokemon(id);
+    return {
+      title: `Pokedex - ${pokemon.name}`,
+      description: `Information about ${pokemon.name}`,
+    };
   }
-
-  const pokemon: PokemonFull = await fetchPokemon(id);
   return {
-    title: `Pokedex - ${pokemon.name}`,
-    description: `Information about ${pokemon.name}`,
+    title: `Pokedex - Not Found`,
+    description: `No such Pokemon`,
   };
 }
 
@@ -66,7 +76,11 @@ export default async function PokemonPage({
   const { id } = await params;
 
   if (id) {
-    if (parseInt(id) < SMALLEST_ID || parseInt(id) > MAX_POKEMON) {
+    if (
+      Number.isNaN(parseInt(id)) ||
+      parseInt(id) < SMALLEST_ID ||
+      parseInt(id) > MAX_POKEMON
+    ) {
       return notFound();
     }
   }
