@@ -3,7 +3,7 @@ import { Jaldi, Jersey_10 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const jaldi = Jaldi({
   subsets: ["latin"],
   weight: "400",
@@ -35,6 +35,7 @@ export default function RootLayout({
         </header>
         <main>{children}</main>
         <Footer></Footer>
+        <SpeedInsights></SpeedInsights>
       </body>
     </html>
   );
