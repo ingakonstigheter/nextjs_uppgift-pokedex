@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function GetPokemon({ pokemon }: { pokemon: PokemonFull }) {
   return (
-    <article className="grid w-[80ch] p-4 [grid-template-rows:auto_1fr] gap-4 [grid-template-cols:1fr_1fr] bg-white rounded shadow">
+    <article className="grid w-[80ch] p-4 h-full [grid-template-rows:auto_1fr] gap-4 [grid-template-cols:1fr_1fr] bg-white rounded shadow">
       <div className="flex justify-center gap-4 col-span-2">
         <h1 className="text-5xl">
           <NameLink id={pokemon.id.toString()} name={pokemon.name}></NameLink>
@@ -110,7 +110,7 @@ export default async function PokemonPage({
   if (!pokemon) return notFound();
 
   return (
-    <div className="justify-center min-h-dvh place-items-center bg-gradient-to-r from-blue-100 to-purple-100 p-4 flex">
+    <div className="justify-center min-h-dvh bg-gradient-to-r from-blue-100 to-purple-100 p-4 flex gap-4">
       <Suspense fallback="Loading...">
         <PagnationButton
           cn="self-start"

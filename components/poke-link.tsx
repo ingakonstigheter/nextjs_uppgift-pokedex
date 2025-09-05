@@ -11,7 +11,7 @@ export default function PokeLink({ id, name }: { name: string; id: string }) {
     path = "#";
   }
   return (
-    <Link href={path} className="capitalize">
+    <Link href={path} className="capitalize focus:underline hover:underline">
       {name}
     </Link>
   );

@@ -1,6 +1,6 @@
 import { PokemonTypesShort } from "./interfaces";
 
-export const MAX_POKEMON = 151;
+export const MAX_POKEMON = 10;
 export const SMALLEST_ID = 1;
 
 export const POKEMON_TYPES: PokemonTypesShort[] = [

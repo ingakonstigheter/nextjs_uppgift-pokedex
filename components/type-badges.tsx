@@ -10,7 +10,7 @@ export default function TypeBadges({ types }: { types: PokemonTypes[] }) {
         return (
           <Link
             key={index}
-            className="px-2 capitalize w-min h-min rounded-xl font-bold text-white"
+            className="px-2 capitalize w-min h-min rounded-xl font-bold text-white focus:ring-2 focus:ring-blue-300 hover:ring-2 hover:ring-blue-300"
             style={{
               backgroundColor:
                 pokeTypeColors[type.type.name as keyof typeof pokeTypeColors],

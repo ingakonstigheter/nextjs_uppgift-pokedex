@@ -1,4 +1,5 @@
 "use client";
+
 import { Input } from "./ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
