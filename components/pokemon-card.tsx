@@ -40,7 +40,7 @@ export default async function PokemonCard({ id }: { id: string | undefined }) {
         className="w-[100px] border-4 rounded-full flex m-auto p-1 row-start-1"
         style={{ borderColor: color }}>
         <Image
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.id}.png`}
+          src={pokemon.sprites.front_shiny}
           alt={`${pokemon.name}`}
           height={96}
           width={96}
@@ -53,7 +53,7 @@ export default async function PokemonCard({ id }: { id: string | undefined }) {
         style={{
           backgroundColor: color,
         }}>
-        {`#${String(pokemon.id).padStart(4, "0")}`}
+        {`#${pokemon.id.toString().padStart(4, "0")}`}
       </p>
 
       {/* type badges */}

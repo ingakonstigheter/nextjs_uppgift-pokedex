@@ -3,7 +3,9 @@ export interface PokemonFull {
   name: string;
   types: PokemonTypes[];
   stats: PokemonStats[];
-  sprites: string[];
+  sprites: {
+    front_shiny: string;
+  };
 }
 export interface PokemonShort {
   name: string;
